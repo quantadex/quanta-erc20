@@ -13,6 +13,8 @@
  */
 
 var LedgerWalletProvider = require("truffle-ledger-provider");
+var HDWalletProvider = require("truffle-hdwallet-provider");
+var mnemonic = "foil wisdom culture upon response early volcano rhythm enable glimpse kite alone";
 
 var infura_apikey = 'f884e325628b4c58aaa49de658a5a753';
 
@@ -25,9 +27,7 @@ module.exports = {
       gas: 1000000
     },
     ropsten: {
-      provider:function () { return new LedgerWalletProvider({
-          accountsOffset: 0 // we use the first address
-      }, "https://ropsten.infura.io/" + infura_apikey) },
+      provider: new HDWalletProvider(mnemonic, "https://ropsten.infura.io/" + infura_apikey),
       network_id: 3,
       gas: 4600000
     },

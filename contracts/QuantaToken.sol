@@ -17,7 +17,6 @@ contract QuantaToken is PausableToken {
 
     function QuantaToken() 
     {
-        totalSupply = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
         Transfer(address(0x0), msg.sender, INITIAL_SUPPLY);
     }
