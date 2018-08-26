@@ -1,5 +1,5 @@
 {
-  "name": "zilliqa-token-contract",
+  "name": "quanta-token-contract",
   "version": "1.0.0",
   "description": "Quanta Token Distribution",
   "main": "contracts",
@@ -13,6 +13,7 @@
     "bignumber.js": "^4.1.0",
     "truffle": "^4.0.1",
     "truffle-hdwallet-provider": "0.0.3",
+    "truffle-ledger-provider": "0.0.4",
     "zeppelin-solidity": "^1.4.0"
   }
 }

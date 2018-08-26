@@ -1,9 +1,20 @@
-var HDWalletProvider = require('truffle-hdwallet-provider');
+/*
+ * NB: since truffle-hdwallet-provider 0.0.5 you must wrap HDWallet providers in a 
+ * function when declaring them. Failure to do so will cause commands to hang. ex:
+ * ```
+ * mainnet: {
+ *     provider: function() { 
+ *       return new HDWalletProvider(mnemonic, 'https://mainnet.infura.io/<infura-key>') 
+ *     },
+ *     network_id: '1',
+ *     gas: 4500000,
+ *     gasPrice: 10000000000,
+ *   },
+ */
 
-var infura_apikey = 'X79nsSctU4b1gjfdcHoO';
-var mnemonic = 'order undo globe together habit object meat dinosaur awful slight shield inch';
+var LedgerWalletProvider = require("truffle-ledger-provider");
 
-
+var infura_apikey = 'f884e325628b4c58aaa49de658a5a753';
 
 module.exports = {
   networks: {
@@ -14,14 +25,16 @@ module.exports = {
       gas: 1000000
     },
     ropsten: {
-    	provider: new HDWalletProvider(mnemonic, "https://ropsten.infura.io/"+infura_apikey),
+      provider:function () { return new LedgerWalletProvider({
+          accountsOffset: 0 // we use the first address
+      }, "https://ropsten.infura.io/" + infura_apikey) },
       network_id: 3,
-      gas: 3000000
+      gas: 4600000
     },
     live: {
       host: "localhost",
       port: 8546,
-      network_id: 1        // Ethereum public network
+      network_id: 1 // Ethereum public network
     }
   }
 };
