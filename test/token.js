@@ -16,9 +16,6 @@ var totalSupply = new BigNumber(400000000 * (10**9));
 
 var erc20TokenContract;
 
-////////////////////////////////////////////////////////////////////////////////
-// tests are currently broken
-
 contract('token contract', function(accounts) {
 
   beforeEach(function(done){
@@ -86,19 +83,6 @@ contract('token contract', function(accounts) {
   it("unpause contract", function () {
     return tokenContract.pause(false, false);
   });
-
-  // it("transfer from non owner when transfers started", function() {
-  //   var value = new BigNumber(5);
-  //   return tokenContract.approve(accounts[5], value, {from:accounts[2]}).then(function(){
-  //       return tokenContract.transferFrom(accounts[2],accounts[3],value,{from:accounts[5]});
-  //   }).then(function(){
-  //       assert.fail("transfer from should fail in token sale");  
-  //   }).catch(function(error){
-  //       //assert( true, "expected throw got " + error);
-  //       // revert approve
-  //       return tokenContract.approve(accounts[5], new BigNumber(0), {from:accounts[2]});
-  //   });
-  // });
   
   it("transfer more than balance", function() {
     var value = new BigNumber(101);
@@ -126,21 +110,6 @@ contract('token contract', function(accounts) {
         assert( Helpers.throwErrorMessage(error), "expected throw got " + error);    
     });
   });
-
-  // it("transfer - see that balance changes", function() {
-  //   var value = new BigNumber(60);
-  //   return tokenContract.balanceOf(accounts[7]).then(startBalance => {
-  //     return tokenContract.transfer(accounts[8], value, {from:accounts[7]})
-  //     .then(function(){
-  //         return tokenContract.balanceOf(accounts[7]);
-  //     }).then(function(result){
-  //         assert.equal(result.valueOf(), new BigNumber(40).valueOf(), "unexpected balance");
-  //         return tokenContract.balanceOf(accounts[8]);
-  //     }).then(function(result){
-  //         assert.equal(result.valueOf(), new BigNumber(60).valueOf(), "unexpected balance");    
-  //     });
-  //   });
-  // });
   
   it("approve more than balance", function() {
     var value = new BigNumber(180);
@@ -177,24 +146,6 @@ contract('token contract', function(accounts) {
         assert( Helpers.throwErrorMessage(error), "expected throw got " + error);    
     });
   });
-
-  // it("transferfrom", function() {
-  //   var value = new BigNumber(10);  
-  //   return tokenContract.transferFrom(accounts[8], accounts[6], value, {from:accounts[9]}).then(function(){
-  //       // check balance was changed
-  //       return tokenContract.balanceOf(accounts[6]);
-  //   }).then(function(result){
-  //       assert.equal(result.valueOf(), value.valueOf(), "unexpected balance");
-  //       return tokenContract.balanceOf(accounts[8]);
-  //   }).then(function(result){
-  //       assert.equal(result.valueOf(), (new BigNumber(50)).valueOf(), "unexpected balance");
-        
-  //       // check allwance was changed
-  //       return tokenContract.allowance(accounts[8],accounts[9]);
-  //   }).then(function(result){
-  //       assert.equal(result.valueOf(), (new BigNumber(170)).valueOf(), "unexpected allowance");
-  //   });
-  // });
   
   it("transfer from owner when transfers started", function() {
     var value = new BigNumber(100);
